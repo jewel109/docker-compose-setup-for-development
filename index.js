@@ -16,6 +16,7 @@ app.post('/users', async (req, res) => {
     if (users.length !== 0) {
       console.log(users)
       return res.status(401).json({ msg: "user already exist" });
+
     } else if (users) {
       const newUser = new User({ name, email, age });
       const savedUser = await newUser.save();
