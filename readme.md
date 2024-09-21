@@ -1,5 +1,4 @@
 
-```
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -32,4 +31,3 @@ curl -X POST http://localhost:3000/users \
   "email": "johndoe@example.com",
   "age": 30
 }'
-```
