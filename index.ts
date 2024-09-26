@@ -1,14 +1,41 @@
 import express from "express";
-import { db } from "./db.js";
-import { User } from "./userModel.js";
+import { db } from "./db.ts";
+import { User } from "./userModel.ts";
+import { Kafka } from "kafkajs";
+import { createClient } from "redis";
 
-const { SERVER_PORT } = process.env
+const { SERVER_PORT, KAFKA_HOST } = process.env
+console.log(KAFKA_HOST)
 
+// FIXME
 console.log(SERVER_PORT)
 const app = express()
 
 app.use(express.json())
-await db()
+db()
+
+async function conn() {
+  try {
+    const kafka = new Kafka({
+      clientId: 'my-app',
+      brokers: [`${KAFKA_HOST}:9092`],
+    })
+    const producer = kafka.producer();
+    await producer.connect();
+    console.log("connected kafka")
+
+    const redisClient = createClient({
+      url: "redis://redis:6379"
+
+    })
+    console.log("redis connnected")
+
+  } catch (error) {
+
+    console.log(error)
+  }
+}
+conn()
 app.post('/users', async (req, res) => {
   try {
     const { name, email, age } = req.body;

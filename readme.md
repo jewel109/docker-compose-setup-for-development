@@ -43,3 +43,11 @@ curl -X POST http://localhost:3000/users \
   "email": "johndoe@example.com",
   "age": 30
 }'
+```
+
+# Reference
+
+<https://github.com/ufoscout/docker-compose-wait/tree/master>
+<https://stackoverflow.com/questions/30063907/docker-compose-how-to-execute-multiple-commands>
+<https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y/41854997#41854997>
+<https://github.com/jwilder/dockerize>
